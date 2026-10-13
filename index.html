@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✨ 나의 반짝이는 MBTI 스파크 테스트</title>
+  <meta name="description" content="12가지 유쾌한 질문으로 알아보는 나의 진짜 성격 유형! 귀엽고 유쾌한 MBTI 성향 탐구 테스트">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="나의 반짝이는 MBTI 스파크 테스트">
+  <meta property="og:description" content="12가지 질문으로 쉽고 빠르게 알아보는 나의 성격 유형 & 찰떡 케미!">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon Emoji -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Light Orbs -->
+  <div class="ambient-circle ambient-1"></div>
+  <div class="ambient-circle ambient-2"></div>
+  <div class="ambient-circle ambient-3"></div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Main App Card -->
+  <main class="app-container">
+
+    <!-- 1. START SCREEN -->
+    <section id="screen-start" class="screen start-screen active" aria-labelledby="start-title">
+      <div class="tag-badge">✨ 2026 초간단 성격 탐구</div>
+      <h1 id="start-title" class="main-title">
+        나의 반짝이는<br>
+        <span class="gradient-text">MBTI 스파크</span> 테스트
+      </h1>
+
+      <div class="hero-emoji-container">
+        <div class="hero-pulse-ring"></div>
+        <div class="hero-emoji">🧭</div>
+      </div>
+
+      <p class="start-desc">
+        일상 속 흥미진진한 12가지 상황에서<br>
+        나의 숨겨진 본캐 성향과 찰떡궁합을 찾아보세요!
+      </p>
+
+      <div class="feature-pills">
+        <span class="pill-item">⏱️ 소요시간 약 3분</span>
+        <span class="pill-item">🎯 총 12문항</span>
+        <span class="pill-item">💖 16가지 유형 & 케미</span>
+      </div>
+
+      <button id="btn-start" class="btn-primary" type="button">
+        <span>테스트 시작하기</span>
+        <span aria-hidden="true">🚀</span>
+      </button>
+    </section>
+
+
+    <!-- 2. QUIZ SCREEN -->
+    <section id="screen-quiz" class="screen quiz-screen" aria-label="MBTI 테스트 질문">
+      <!-- Header & Progress -->
+      <header class="quiz-header">
+        <div class="progress-info">
+          <span id="current-step" class="step-chip">Q. 01 / 12</span>
+          <span id="progress-percent" class="percentage-badge">8%</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+      </header>
+
+      <!-- Question Card -->
+      <article class="question-box">
+        <div id="question-emoji" class="question-emoji">💬</div>
+        <h2 id="question-title" class="question-title">질문 내용이 여기에 들어갑니다.</h2>
+      </article>
+
+      <!-- Options -->
+      <div id="option-container" class="options-list">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+
+      <!-- Navigation Footer -->
+      <footer class="quiz-footer">
+        <button id="btn-prev" class="btn-prev" type="button" disabled>
+          <span aria-hidden="true">←</span>
+          <span>이전 질문</span>
+        </button>
+      </footer>
+    </section>
+
+
+    <!-- 3. LOADING / CALCULATING SCREEN -->
+    <section id="screen-loading" class="screen loading-screen" aria-live="polite">
+      <div class="loading-spinner"></div>
+      <h2 class="loading-title">결과를 계산하고 있어요!</h2>
+      <p class="loading-desc">당신의 답변을 바탕으로 성향 데이터를 분석 중입니다... ✨</p>
+    </section>
+
+
+    <!-- 4. RESULT SCREEN -->
+    <section id="screen-result" class="screen result-screen" aria-label="MBTI 테스트 결과">
+      <div id="result-badge" class="result-badge">당신의 성격 유형은?</div>
+      
+      <div id="result-emoji-card" class="result-emoji-card">
+        <span id="result-emoji">🎉</span>
+      </div>
+
+      <h2 id="result-mbti-code" class="result-mbti-code">ENFP</h2>
+      <p id="result-nickname" class="result-nickname">재기발랄한 활동가</p>
+
+      <div id="result-tags" class="result-tags">
+        <!-- Tags dynamic -->
+      </div>
+
+      <div class="result-desc-card">
+        <p id="result-desc">유형에 대한 핵심 설명이 들어갑니다.</p>
+      </div>
+
+      <!-- Traits Section -->
+      <h3 class="section-title">🔍 나만의 특별한 특징</h3>
+      <div id="result-traits" class="traits-container">
+        <!-- Dynamic Traits -->
+      </div>
+
+      <!-- Celebrities Section -->
+      <h3 class="section-title">⭐ 나와 같은 유형의 연예인</h3>
+      <div id="result-celebs" class="celebs-container">
+        <!-- Dynamic Celebrities -->
+      </div>
+
+      <!-- Dimension Ratios Section -->
+      <h3 class="section-title">📊 나의 성향 분석 그래프</h3>
+      <div id="dimension-bars" class="dimension-bars-card">
+        <!-- Dynamic Dimension Bars -->
+      </div>
+
+      <!-- Chemistry Section -->
+      <h3 class="section-title">💞 추천 궁합 케미</h3>
+      <div class="chemistry-grid">
+        <div class="chemistry-card">
+          <div class="chemistry-header chem-best">
+            <span>❤️</span> 찰떡궁합 단짝
+          </div>
+          <div id="best-type" class="chemistry-type">INFJ</div>
+          <div id="best-desc" class="chemistry-desc">서로에게 가장 큰 영감을 주는 관계</div>
+        </div>
+
+        <div class="chemistry-card">
+          <div class="chemistry-header chem-sub">
+            <span>🤝</span> 보완해주는 파트너
+          </div>
+          <div id="chem-type" class="chemistry-type">ISTJ</div>
+          <div id="chem-desc" class="chemistry-desc">서로의 부족한 점을 채워주는 파트너</div>
+        </div>
+      </div>
+
+      <!-- Result Action Buttons -->
+      <div class="result-actions">
+        <button id="btn-restart" class="btn-restart" type="button">
+          <span>다시 테스트하기</span>
+          <span aria-hidden="true">🔄</span>
+        </button>
+        <button id="btn-share" class="btn-share" type="button">
+          <span>테스트 링크 복사하기</span>
+          <span aria-hidden="true">🔗</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast-msg" role="status" aria-live="polite">
+    ✨ 링크가 복사되었습니다!
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="questions.js"></script>
+  <script src="results.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
